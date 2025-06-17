@@ -29,3 +29,11 @@ export interface ProcessedResult {
   summary: string;
   tagFrequencies: Record<string, number>;
 } 
+
+//create task type for formatting
+export type Task = {
+  task_text: string
+  due_date: string | null
+  status: 'pending' | 'done'
+  category: string
+}
