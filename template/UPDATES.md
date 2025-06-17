@@ -1,3 +1,10 @@
+### To Test and View Extracted Tasks
+`pnpm install`
+`pnpm add -D openai`
+(Installed dependency to remove warning upon running pnpm lint)
+`pnpm test` 
+
+### **Changes made**
 ### 1. **New Type Definition**
 
 - Defined a new `Task` type in `types.ts`:
@@ -39,9 +46,40 @@ This function scans through the `transcript_user` field of each voice entry to e
    }
 
 #### `extractDueDateFromTaskList(taskList: Task[]) => Task[]`
+
 1. **Predifined list of due date related words**
 
 2. **Due Date Assignment**  
-   On finding a match:
+   On finding a match with a predefined set of time-related words:
    - The time phrase is assigned to the `due_date` field.
-   - The phrase is removed from the original `task_text` for clarity.
+   - The phrase is removed from the original `task_text`.
+
+
+### 3. **CSV Parsing for Mock Voice Entries**
+
+#### `parseCSV(csv: string): Record<string, string>[]`
+
+This segment of the code parses the local CSV file called `Expanded_Diary_Entries.csv`. Here's a flow of how the function works: 
+1. Counts the rows 
+2. Parses the CSV into Records 
+    - Handles escaped double quotes 
+    - Handles values wrapped in quotes 
+    - Recognizes the commas separating the data entries as opposed to those inside the quote
+3. Returns an array of Record objects for VoiceEntry 
+
+### 4. **Extracted Tasks**
+
+Format includes `task_text`, `due_date`, `status`, `category`. Below is an example of a properly extracted task. The original text in `Expanded_Diary_Entries.csv` is "I’m finally sitting down to write my personal statement tomorrow." The task extractor has extracted the following task and assigned it the due date of tomorrow. 
+
+`   {
+      task_text: 'write my personal statement',
+      due_date: 'tomorrow',
+      status: 'pending',
+      category: 'general'
+    }
+
+### 5. **Future Improvements** 
+
+1. Use AI to detect objects and stop words for phrases
+2. Ability to update status depending on the current date 
+3. Category detection of the task 

@@ -28,6 +28,7 @@ export interface VoiceEntry {
 export interface ProcessedResult {
   summary: string;
   tagFrequencies: Record<string, number>;
+  tasks: Task[];
 } 
 
 //create task type for formatting

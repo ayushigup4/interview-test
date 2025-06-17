@@ -1,16 +1,8 @@
 // // eslint-disable-next-line import/no-extraneous-dependencies
 // import { describe, it, expect } from 'vitest'
-// import { mockVoiceEntries } from '../src/lib/mockData.js'
+import { mockVoiceEntries } from '../src/lib/mockData.js'
 // import processEntries from '../src/lib/sampleFunction.js'
 
-// describe('processEntries', () => {
-//   it('counts reflection tag correctly', () => {
-//     const result = processEntries(mockVoiceEntries)
-//     // console.log(mockVoiceEntries[0])
-//     console.log(result)
-//     expect(result.tagFrequencies.reflection).toBe(mockVoiceEntries.length)
-//   })
-// }) 
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { describe, it, expect } from 'vitest'
@@ -20,6 +12,14 @@ import processEntries, {
 } from '../src/lib/sampleFunction.js'
 import { VoiceEntry } from '../src/lib/types.js'
 
+describe('processEntries', () => {
+  it('counts reflection tag correctly', () => {
+    const result = processEntries(mockVoiceEntries)
+    // console.log(mockVoiceEntries[0])
+    console.log(result)
+    expect(result.tagFrequencies.reflection).toBe(mockVoiceEntries.length)
+  })
+}) 
 describe('processEntries', () => {
   it('counts reflection tag correctly', () => {
     const mock: VoiceEntry[] = [
